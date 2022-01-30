@@ -72,6 +72,25 @@ public class LinkedList<T> {
 		}//end for
 		return false;
 	}
+	
+	/*
+	 * If LinkedList is empty returns null. Throws IndexOutOfBoundsException if index out of list rang. Returns the data at this index.
+	 */
+	public T get(int i) throws Exception{
+		if(i+1 < this.size || i+1 > this.size) {
+			throw new IndexOutOfBoundsException();
+		}
+		if(this.size == 0) {
+			return null;
+		}
+		Node myNode = this.head;
+		for(int j = 0; j < this.size; j++) {
+			if(j == i) {return (T)myNode.data; }
+			myNode = myNode.nextNode;
+		}
+		return null;
+	}
+	
 	/*
 	 * If LinkedList contains entry then returns true, otherwise returns false
 	 */
