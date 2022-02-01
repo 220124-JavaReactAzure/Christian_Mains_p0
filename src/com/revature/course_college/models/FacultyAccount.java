@@ -4,11 +4,17 @@ import com.revature.course_college.util.LinkedList;
 
 public class FacultyAccount extends Account{
 	
-	LinkedList<Class> classes;
+	protected LinkedList<Class> classes;
 	
-	FacultyAccount(String firstname, String middlename, String lastname, String email, String password){
-		super(firstname, middlename, lastname, email, password);
+	public FacultyAccount(String firstname, String middlename, String lastname, String password){
+		super(firstname, middlename, lastname, password);
 		this.classes = new LinkedList<Class>();
+	}
+	
+	public String toFileString() {
+		String newFaculty;
+		newFaculty = firstName + ":" + middleName + ":" + lastName + ":" + password;
+		return newFaculty;
 	}
 
 }

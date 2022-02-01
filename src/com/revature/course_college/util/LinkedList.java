@@ -37,8 +37,9 @@ public class LinkedList<T> {
 			return true;
 		}
 		else {
-			this.tail.nextNode = newNode;
-			this.tail = newNode;
+			newNode.nextNode = this.head;
+			this.head = newNode;
+			this.size++;
 			return true;
 		}
 	}
@@ -48,22 +49,25 @@ public class LinkedList<T> {
 	 */
 	public boolean remove(T data) {
 		if(data == null) {return false;}
-		if(this.head.data.equals(data)) {
-			this.head = this.head.nextNode;
+		if(head.data.equals(data)) {
+			head = head.nextNode;
+			size--;
 			return true;
 		}
-		Node<T> oldNode = this.head.nextNode;
-		Node<T> previousNode = this.head;
-		for(int i = 2; i <= this.size; i++) {
+		Node<T> oldNode = head.nextNode;
+		Node<T> previousNode = head;
+		for(int i = 2; i <= size; i++) {
 			if(oldNode.data.equals(data)) {
-				if(oldNode.equals(this.tail)) {
+				if(oldNode.equals(tail)) {
 					previousNode.nextNode = null;
-					this.tail = previousNode;
+					tail = previousNode;
+					size--;
 					return true;
 				}
 				else {
 					previousNode.nextNode = oldNode.nextNode;
 					oldNode = null;
+					size--;
 					return true;
 				}
 			}
@@ -77,14 +81,14 @@ public class LinkedList<T> {
 	 * If LinkedList is empty returns null. Throws IndexOutOfBoundsException if index out of list rang. Returns the data at this index.
 	 */
 	public T get(int i) throws Exception{
-		if(i+1 < this.size || i+1 > this.size) {
-			throw new IndexOutOfBoundsException();
-		}
-		if(this.size == 0) {
+		if(size == 0) {
 			return null;
 		}
+		if(i < 0 || i+1 > size) {
+			throw new IndexOutOfBoundsException();
+		}
 		Node myNode = this.head;
-		for(int j = 0; j < this.size; j++) {
+		for(int j = 0; j < size; j++) {
 			if(j == i) {return (T)myNode.data; }
 			myNode = myNode.nextNode;
 		}

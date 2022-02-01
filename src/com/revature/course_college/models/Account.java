@@ -3,14 +3,14 @@ package com.revature.course_college.models;
 
 public abstract class Account {
 
-	String firstName;
-	String middleName;
-	String lastName;
-	String userName;
-	String email;
-	String password;
+	protected String firstName;
+	protected String middleName;
+	protected String lastName;
+	protected String userName;
+	protected String email;
+	protected String password;
 	
-	public Account(String firstname, String middlename, String lastname, String email, String password) {
+	public Account(String firstname, String middlename, String lastname, String password) {
 		this.firstName = firstname;
 		this.middleName = middlename;
 		this.lastName = lastname;
@@ -21,26 +21,23 @@ public abstract class Account {
 	}
 	
 	public void setLastName(String last) {
-		this.lastName = last;
+		lastName = last;
+	}
+	
+	public void getLastName(String last) {
+		lastName = last;
 	}
 	
 	public void setFirstName(String first) {
-		this.firstName = first;
+		firstName = first;
 	}
 	
 	public void setMiddleName(String middle) {
-		this.middleName = middle;
+		middleName = middle;
 	}
 	
 	public void setPassWord(String pass) {
-		this.password = pass;
-	}
-	
-	private boolean isValidPassword(String pass) {
-		if(pass.length() < 8 || pass.length() > 17) {
-			return false;
-		}
-		return true;
+		password = pass;
 	}
 	
 	private String generateUserName(String first, String middle, String last) {

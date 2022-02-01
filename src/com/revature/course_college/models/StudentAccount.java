@@ -6,8 +6,8 @@ public class StudentAccount extends Account{
 
 	LinkedList<Class> classes;
 	
-	StudentAccount(String firstname, String middlename, String lastname, String email, String password){
-		super(firstname, middlename, lastname, email, password);
+	StudentAccount(String firstname, String middlename, String lastname, String password){
+		super(firstname, middlename, lastname, password);
 		this.classes = new LinkedList<Class>();
 	}
 	

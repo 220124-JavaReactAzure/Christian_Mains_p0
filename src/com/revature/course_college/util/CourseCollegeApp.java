@@ -3,19 +3,23 @@ package com.revature.course_college.util;
 import java.io.*;
 
 import com.revature.course_college.menus.*;
+import com.revature.course_college.service.*;
 
 public class CourseCollegeApp {
 	
-	private boolean isRunning;
+	private static boolean isRunning;
 	private final MenuRouter menuRouter;
 	
 	public CourseCollegeApp() {
 		
-		this.isRunning = true;
-		this.menuRouter = new MenuRouter();
+		isRunning = true;
+		menuRouter = new MenuRouter();
 		
 		BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
+		FacultyAccountService facultyAccountService = new FacultyAccountService();
 		
+		menuRouter.add(new LogInMenu(consoleReader, menuRouter));
+		menuRouter.add(new RegisterAccountMenu(consoleReader, menuRouter, facultyAccountService));
 		menuRouter.add(new WelcomeMenu(consoleReader, menuRouter));
 	}
 	
@@ -30,7 +34,7 @@ public class CourseCollegeApp {
 		}
 	}
 	
-	public void shutDown() {
+	public static void shutDown() {
 		isRunning = false;
 	}
 }
