@@ -16,7 +16,27 @@ public class StudentDashboard extends Menu{
 
 	@Override
 	public void render() throws Exception {
-		System.out.println("Need to Implement Student DashBoard\n");
+		System.out.print("\n\n");
+		boolean menuRun = true;
+		while(menuRun) {
+			System.out.print("Student Dashboard\n0) View Open Classes\n1) View My Classes\n2) Exit Student Dashboard\n>");
+			String userInput = consoleReader.readLine();
+			switch(userInput) {
+			case "0":
+				menuRouter.transfer("/studentopenclassesmenu");
+				break;
+			case "1":
+				menuRouter.transfer("/studentclassesmenu");
+				break;
+			case "2":
+				studentAccountService.logout();
+				menuRun = false;
+				break;
+			default:
+				System.out.print("Invalid Entry\n");
+				break;
+			}
+		}
 		
 	}
 

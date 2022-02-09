@@ -152,4 +152,24 @@ public class FacultyDAO implements CrudDAO<FacultyAccount> {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public boolean allReadyHasAccount(String firstName, String middleName, String lastName) {
+		try {Connection connection = ConnectionFactory.getInstance().getConnection();
+
+		String sql = "select * from FacultyAccount where first_name = ? and middle_name = ? and last_name = ?";
+		PreparedStatement preparedStatement = connection.prepareStatement(sql);
+		preparedStatement.setString(1, firstName);
+		preparedStatement.setString(2, middleName);
+		preparedStatement.setString(3, lastName);
+		ResultSet resultset = preparedStatement.executeQuery();
+
+		if (resultset.next()) {
+			return true;
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	return false;
+	}
 }

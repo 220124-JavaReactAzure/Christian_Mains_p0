@@ -18,6 +18,16 @@ public class ClassService {
 		classes = classDAO.findAll();
 	}
 	
+	public void dumpAllClasses() {
+		classes = null;
+	}
+	
+	public String printThisClass(int i) throws Exception {
+		if(i < 0 || i >= classes.getSize()) {return null;}
+		Clas cuo = classes.get(i);
+		return cuo.getID()+": "+cuo.getName()+" Credits = "+cuo.getCredits();
+	}
+	
 	public String classCatalogMenu() throws Exception{
 		String answer = "";
 		for(int i = 0; i < classes.getSize(); i++) {
@@ -26,5 +36,35 @@ public class ClassService {
 		return answer + "\n";
 	}
 	
-	public boolean createNewClass()
+	public boolean createNewClass(String classID, String className, int classCredit) {
+		Clas newClass = new Clas(classID, className, classCredit);
+		newClass = classDAO.creat(newClass);
+		if(newClass != null) {
+			classes.add(newClass);
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean deleteoldClass(int i) throws Exception {
+		if(i < 0 || i >= classes.getSize()) {return false;}
+		Clas oldClass = classes.get(i);
+		if(classDAO.delete(oldClass)) {
+			classes.remove(oldClass);
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean editClass(int oldClass, String newID, String newName, int newCredits) throws Exception {
+		if(oldClass < 0 || oldClass >= classes.getSize()) {return false;}
+		Clas editclass = classes.get(oldClass);
+		if(classDAO.update(editclass, newID, newName, newCredits)) {
+			editclass.setID(newID);
+			editclass.setName(newName);
+			editclass.setCredits(newCredits);
+			return true;
+		}
+		else {	return false;}
+	}
 }

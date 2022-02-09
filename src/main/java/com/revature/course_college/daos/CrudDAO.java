@@ -1,6 +1,5 @@
 package com.revature.course_college.daos;
 
-import com.revature.course_college.models.FacultyAccount;
 import com.revature.course_college.util.LinkedList;
 
 public interface CrudDAO<T> {
@@ -10,6 +9,8 @@ public interface CrudDAO<T> {
 	public LinkedList<T> findAll();
 	
 	public T findByID(int id);
+	
+	public boolean allReadyHasAccount(String firstName, String middleName, String lastName);
 	
 	public T findByUsername(String userName);
 	

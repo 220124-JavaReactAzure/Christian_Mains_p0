@@ -1,6 +1,7 @@
 package com.revature.course_college.menus;
 
 import java.io.BufferedReader;
+import java.util.Random;
 
 import com.revature.course_college.models.*;
 import com.revature.course_college.service.*;
@@ -25,7 +26,7 @@ public class RegisterAccountMenu extends Menu {
 		String middleName;
 		String lastName;
 		String password;
-		System.out.print("\n\nPlese enter required information for new account\n");
+		System.out.print("\n\nPlease enter required information for new account\n");
 		while (true) {
 			System.out.print("First Name\n>");
 			firstName = consoleReader.readLine();
@@ -40,12 +41,42 @@ public class RegisterAccountMenu extends Menu {
 			}
 			System.out.print("\nInvalid Input Please Enter Information Again!\n");
 		}
-
+		
 		while (true) {
+			if(facultyAccountService.allReadyHasAccount(firstName, middleName, lastName) || studentAccountService.allReadyHasAccount(firstName, middleName, lastName)) {
+				System.out.print("\nYou Are Already Have A Registerd Account!\n");
+				break;
+			}
+			
 			System.out.print("\nAre you a new Faculty Member or a new Student\n1) Faculty\n2) Student\n>");
 			String userInput = consoleReader.readLine();
+			
+				String username = firstName.substring(0, 1).toLowerCase()+ middleName.substring(0, 1).toLowerCase() + lastName.toLowerCase();
+				int i = 0;
+				while (true) {
+					FacultyAccount facultyTest = facultyAccountService.findByUsername(username);
+					StudentAccount studentTest = studentAccountService.findByUsername(username);
+					if (facultyTest.getUserName() == null && studentTest.getUserName() == null) {
+						break;
+					}
+					i++;
+					username = username +i;
+				}
+				
+				Random rand = new Random();
+				while (true) {
+					i = rand.nextInt((99999 - 10000) + 1) + 10000;
+					FacultyAccount facultyTest = facultyAccountService.findByID(i);
+					StudentAccount studentTest = studentAccountService.findByID(i);
+					if (facultyTest.getUserName() == null && studentTest.getUserName() == null) {
+						break;
+					}
+				}
+			
 			if (userInput.equals("1")) {
 				FacultyAccount newFaculty = new FacultyAccount(firstName, middleName, lastName, password);
+				newFaculty.setUserName(username);
+				newFaculty.setID(i);
 				try {
 					facultyAccountService.registerNewFaculty(newFaculty);
 				} catch (Exception e) {
@@ -54,8 +85,11 @@ public class RegisterAccountMenu extends Menu {
 				}
 				break;
 			}
+			
 			if (userInput.equals("2")) {
 				StudentAccount newStudent = new StudentAccount(firstName, middleName, lastName, password);
+				newStudent.setUserName(username);
+				newStudent.setID(i);
 				try {
 					studentAccountService.registerNewStudent(newStudent);
 				} catch (Exception e) {

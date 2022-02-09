@@ -18,14 +18,16 @@ public class FacultyAccountService {
 
 	public boolean registerNewFaculty(FacultyAccount facultyAccount) {
 
-		facultyAccount = generateID(facultyAccount);
-		facultyAccount = generateUsername(facultyAccount);
 		facultyAccount.setEmail(facultyAccount.getUserName() + "@college.edu");
 
 		FacultyAccount account = facultyDAO.creat(facultyAccount);
 		System.out.println("\n\nYour account is created, your information is\n" + account.toString() + "\n");
 
 		return true;
+	}
+	
+	public boolean allReadyHasAccount(String firstName, String middleName, String lastName) {
+		return facultyDAO.allReadyHasAccount(firstName, middleName, lastName);
 	}
 
 	public boolean login(String userName, String passWord) {
@@ -45,32 +47,11 @@ public class FacultyAccountService {
 		return facultySession;
 	}
 
-	private FacultyAccount generateID(FacultyAccount account) {
-		Random rand = new Random();
-		int numID = 0;
-		while (true) {
-			numID = rand.nextInt((99999 - 10000) + 1) + 10000;
-			FacultyAccount testaccount = facultyDAO.findByID(numID);
-			if (testaccount.getID() == 0) {
-				account.setID(numID);
-				return account;
-			}
-		}
+	public FacultyAccount findByUsername(String username) {
+		return facultyDAO.findByUsername(username);
 	}
 
-	private FacultyAccount generateUsername(FacultyAccount account) {
-		String username = account.getFirstName().substring(0, 1).toLowerCase()
-				+ account.getMiddleName().substring(0, 1).toLowerCase() + account.getLastName().toLowerCase();
-		FacultyAccount testaccount = new FacultyAccount();
-		int i = 0;
-		while (true) {
-			testaccount = facultyDAO.findByUsername(username);
-			if (testaccount.getUserName() == null) {
-				account.setUserName(username);
-				return account;
-			}
-			i++;
-			username = username + i;
-		}
+	public FacultyAccount findByID(int id) {
+		return facultyDAO.findByID(id);
 	}
 }// end FacultyAccountService

@@ -8,11 +8,11 @@ public class StudentAccount extends Account{
 	
 	public StudentAccount(){
 		super();
-		classes = new LinkedList<Clas>();
+		classes = null;
 	}
 	public StudentAccount(String firstname, String middlename, String lastname, String password){
 		super(firstname, middlename, lastname, password);
-		this.classes = new LinkedList<Clas>();
+		this.classes = null;
 	}
 	
 	public boolean addClass(Clas clas) {
@@ -27,6 +27,22 @@ public class StudentAccount extends Account{
 			}
 		}
 		return false;
+	}
+	
+	public String printClasses() throws Exception {
+		String answer = "";
+		for(int i = 0; i < classes.getSize(); i++) {
+			Clas cl = classes.get(i);
+			answer = answer + i+") "+cl.toString()+"\n";
+		}
+		return answer;
+	}
+	
+	public void setClasses(LinkedList<Clas> list) {
+		this.classes = list;
+	}
+	public void dumpClasses() {
+		this.classes = null;
 	}
 	
 	public String toString() {
