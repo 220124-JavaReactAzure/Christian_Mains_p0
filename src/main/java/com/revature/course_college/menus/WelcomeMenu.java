@@ -56,6 +56,7 @@ public class WelcomeMenu extends Menu{
 			break;
 		case "3":
 			System.out.print("\nWe Look forward to your next fisit, Good By!\nCourse College");
+			//logger.log("Shut Down App");
 			CourseCollegeApp.shutDown();
 			break;
 		default: 

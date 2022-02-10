@@ -31,6 +31,7 @@ public class StudentDashboard extends Menu{
 			case "2":
 				studentAccountService.logout();
 				menuRun = false;
+				System.out.print("\n\n");
 				break;
 			default:
 				System.out.print("Invalid Entry\n");

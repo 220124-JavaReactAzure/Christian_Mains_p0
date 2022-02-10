@@ -21,7 +21,7 @@ public class ClassCatalogMenu extends Menu {
 	public void render() throws Exception {
 		boolean menuRun = true;
 		System.out.print("\n\n");
-		System.out.print("Class Catalog Menu");
+		System.out.print("Class Catalog Menu\n");
 		classService.getAllClasses();
 
 		while (menuRun) {

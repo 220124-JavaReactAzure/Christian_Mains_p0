@@ -11,7 +11,8 @@ public class ClassServiceTestSuite {
 	FacultyAccountService sut;
 	@Before
 	public void testCaseSetUp() {
-		sut = new FacultyAccountService();
+		
+		sut = new FacultyAccountService(null);
 	}
 	@Test
 	public void test_isFacultyValid_returnTrue_givenValidUser() {
@@ -20,9 +21,9 @@ public class ClassServiceTestSuite {
 		FacultyAccount validFaculty = new FacultyAccount();
 
 		//Act
-		boolean actualResult = sut.isFacultyValid();
+		FacultyAccount actualResult = sut.getFacultySession();
 		//Assert
-		Assert.assertTrue(actualResult);
+		Assert.assertNull(actualResult);
 	}
 	
 	@Test(expected = InvalidRequestException.class)
