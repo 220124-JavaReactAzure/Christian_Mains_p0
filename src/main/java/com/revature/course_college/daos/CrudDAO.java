@@ -1,6 +1,6 @@
 package com.revature.course_college.daos;
 
-import com.revature.course_college.util.LinkedList;
+import java.util.LinkedList;
 
 public interface CrudDAO<T> {
 	

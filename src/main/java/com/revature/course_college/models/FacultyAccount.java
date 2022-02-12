@@ -1,6 +1,5 @@
 package com.revature.course_college.models;
 
-import com.revature.course_college.util.LinkedList;
 
 public class FacultyAccount extends Account {
 

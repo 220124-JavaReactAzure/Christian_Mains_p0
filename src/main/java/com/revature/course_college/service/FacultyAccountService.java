@@ -4,7 +4,6 @@ import java.util.Random;
 
 import com.revature.course_college.daos.FacultyDAO;
 import com.revature.course_college.models.FacultyAccount;
-import com.revature.course_college.util.LinkedList;
 
 public class FacultyAccountService {
 

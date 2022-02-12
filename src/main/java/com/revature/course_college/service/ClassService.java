@@ -1,8 +1,9 @@
 package com.revature.course_college.service;
 
+import java.util.LinkedList;
+
 import com.revature.course_college.daos.ClassDAO;
 import com.revature.course_college.models.Clas;
-import com.revature.course_college.util.LinkedList;
 
 public class ClassService {
 
@@ -23,14 +24,14 @@ public class ClassService {
 	}
 	
 	public String printThisClass(int i) throws Exception {
-		if(i < 0 || i >= classes.getSize()) {return null;}
+		if(i < 0 || i >= classes.size()) {return null;}
 		Clas cuo = classes.get(i);
 		return cuo.getID()+": "+cuo.getName()+" Credits = "+cuo.getCredits();
 	}
 	
 	public String classCatalogMenu() throws Exception{
 		String answer = "";
-		for(int i = 0; i < classes.getSize(); i++) {
+		for(int i = 0; i < classes.size(); i++) {
 			answer = answer + i + ") " + classes.get(i).toString() + "\n";
 		}
 		return answer + "\n";
@@ -47,7 +48,7 @@ public class ClassService {
 	}
 	
 	public boolean deleteoldClass(int i) throws Exception {
-		if(i < 0 || i >= classes.getSize()) {return false;}
+		if(i < 0 || i >= classes.size()) {return false;}
 		Clas oldClass = classes.get(i);
 		if(classDAO.delete(oldClass)) {
 			classes.remove(oldClass);
@@ -57,7 +58,7 @@ public class ClassService {
 	}
 	
 	public boolean editClass(int oldClass, String newID, String newName, int newCredits) throws Exception {
-		if(oldClass < 0 || oldClass >= classes.getSize()) {return false;}
+		if(oldClass < 0 || oldClass >= classes.size()) {return false;}
 		Clas editclass = classes.get(oldClass);
 		if(classDAO.update(editclass, newID, newName, newCredits)) {
 			editclass.setID(newID);

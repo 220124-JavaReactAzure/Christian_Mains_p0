@@ -20,7 +20,8 @@ public class ConnectionFactory {
 	
 	private ConnectionFactory() {
 		try {
-			properties.load(new FileReader("src/main/resources/db.properties"));
+			ClassLoader loader = Thread.currentThread().getContextClassLoader();
+			properties.load(loader.getResourceAsStream("db.properties"));
 		} 
 		catch (IOException e) {
 			// TODO Auto-generated catch block

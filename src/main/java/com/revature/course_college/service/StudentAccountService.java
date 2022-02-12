@@ -1,5 +1,6 @@
 package com.revature.course_college.service;
 
+import java.util.LinkedList;
 import java.util.Random;
 
 import com.revature.course_college.daos.ClassDAO;
@@ -7,7 +8,6 @@ import com.revature.course_college.daos.StudentDAO;
 import com.revature.course_college.models.Clas;
 import com.revature.course_college.models.FacultyAccount;
 import com.revature.course_college.models.StudentAccount;
-import com.revature.course_college.util.LinkedList;
 
 public class StudentAccountService {
 

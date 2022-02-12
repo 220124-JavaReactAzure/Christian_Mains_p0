@@ -1,11 +1,11 @@
 package com.revature.course_college.daos;
 
 import java.sql.*;
+import java.util.LinkedList;
 
 import com.revature.course_college.models.Clas;
 import com.revature.course_college.models.FacultyAccount;
 import com.revature.course_college.util.ConnectionFactory;
-import com.revature.course_college.util.LinkedList;
 
 public class ClassDAO{
 
@@ -106,7 +106,7 @@ public class ClassDAO{
 			while(!myClass.isEmpty()) {
 				sql = "select * from Clas where class_id = ?";
 				ps = connection.prepareStatement(sql);
-				ps.setString(1, myClass.removeHead());
+				ps.setString(1, myClass.remove());
 				resultSet = ps.executeQuery(sql);
 				Clas newClass = new Clas();
 				newClass.setID(resultSet.getString("class_id"));

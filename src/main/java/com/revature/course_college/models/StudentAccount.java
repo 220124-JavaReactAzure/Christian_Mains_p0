@@ -1,6 +1,6 @@
 package com.revature.course_college.models;
 
-import com.revature.course_college.util.LinkedList;
+import java.util.LinkedList;
 
 public class StudentAccount extends Account{
 
@@ -20,7 +20,7 @@ public class StudentAccount extends Account{
 	}
 	
 	public boolean removeClass(String classID) throws Exception {
-		for(int i = 0; i < classes.getSize(); i++) {
+		for(int i = 0; i < classes.size(); i++) {
 			if(classes.get(i).id.equals(classID)) {
 				classes.remove(classes.get(i));
 				return true;
@@ -31,7 +31,7 @@ public class StudentAccount extends Account{
 	
 	public String printClasses() throws Exception {
 		String answer = "";
-		for(int i = 0; i < classes.getSize(); i++) {
+		for(int i = 0; i < classes.size(); i++) {
 			Clas cl = classes.get(i);
 			answer = answer + i+") "+cl.toString()+"\n";
 		}
